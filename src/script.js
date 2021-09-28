@@ -18,17 +18,22 @@ $('#send').click(function(){
     let type=$('#type').val();
     let sum=$('#sum').val();
     let comment=$('#comment').val();
+    if ((sum!='')||(category!='Категория')||(type!='Тип')){
     $.ajax({
     type: 'POST',
     url: 'php/send.php',
     data: {dates: dates, category: category, type: type, sum: sum,comment: comment },
     success: function(data) {
             $('#tableItog').html(data);
-            // console.log(data);
+            alert('Данные сохранены')
 
     
     }
     });
+    }
+    else{
+        alert('Обязательные поля для заполнения: категория, тип, сумма')
+    }
 });
 
 $(".editSum").focusout(function(){
